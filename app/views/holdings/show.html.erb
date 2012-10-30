@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Symbol:</b>
+  <%= @holding.symbol %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @holding.price %>
+</p>
+
+<p>
+  <b>Qty:</b>
+  <%= @holding.qty %>
+</p>
+
+
+<%= link_to 'Edit', edit_holding_path(@holding) %> |
+<%= link_to 'Back', holdings_path %>
