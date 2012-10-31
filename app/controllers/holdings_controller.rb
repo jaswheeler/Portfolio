@@ -1,8 +1,15 @@
 class HoldingsController < ApplicationController
+  
+  #As the spec states this is single user only just going to do some 
+  #simple authentication.  I could move the user name and password to a 
+  #config file but this show the concept
+  http_basic_authenticate_with :name => "name", :password => "password"  
+  before_filter :get_market_values, :only => [:create, :update]
+
   # GET /holdings
   # GET /holdings.json
   def index
-    @holdings = Holding.all
+    @holdings = Holding.select("*, ((bid - price) * qty) as gain")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +20,8 @@ class HoldingsController < ApplicationController
   # GET /holdings/1
   # GET /holdings/1.json
   def show
-    @holding = Holding.find(params[:id])
+    #@holding = Holding.find(params[:id])
+    @holding = Holding.select("*, ((bid - price) * qty) as gain").where(id: params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +48,7 @@ class HoldingsController < ApplicationController
   # POST /holdings
   # POST /holdings.json
   def create
-    @holding = Holding.new(params[:holding])
+    @holding = Holding.new(params[:holding].merge(@yahoo_data))
 
     respond_to do |format|
       if @holding.save
@@ -59,7 +67,7 @@ class HoldingsController < ApplicationController
     @holding = Holding.find(params[:id])
 
     respond_to do |format|
-      if @holding.update_attributes(params[:holding])
+      if @holding.update_attributes(params[:holding].merge(@yahoo_data))
         format.html { redirect_to @holding, notice: 'Holding was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +87,11 @@ class HoldingsController < ApplicationController
       format.html { redirect_to holdings_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_market_values
+    @yahoo_data = YahooFinance.market_details(params[:holding][:symbol])
   end
 end

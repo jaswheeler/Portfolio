@@ -1,15 +1,25 @@
 <%- model_class = Holding -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h3><%=t '.title', :default => model_class.model_name.human %>: <%= @holding.symbol %></h3>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:symbol) %>:</strong></dt>
-  <dd><%= @holding.symbol %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @holding.price %></dd>
+  <dd><%= number_to_currency(@holding.price) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:qty) %>:</strong></dt>
   <dd><%= @holding.qty %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ask) %>:</strong></dt>
+  <dd><%= number_to_currency(@holding.ask) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bid) %>:</strong></dt>
+  <dd><%= number_to_currency(@holding.bid) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gain) %>:</strong></dt>
+  <dd><%= number_to_currency(@holding.gain) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:daily_low) %>:</strong></dt>
+  <dd><%= number_to_currency(@holding.daily_low) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:daily_high) %>:</strong></dt>
+  <dd><%= number_to_currency(@holding.daily_high) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
+  <dd><%= @holding.notes %></dd>
 </dl>
 
 <div class="form-actions">

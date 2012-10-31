@@ -6,9 +6,11 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:symbol) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:bid) %></th>
       <th><%= model_class.human_attribute_name(:qty) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Gain</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,9 +18,11 @@
     <% @holdings.each do |holding| %>
       <tr>
         <td><b><%= link_to holding.symbol, holding_path(holding) %></b></td>
-        <td><%= holding.price %></td>
+        <td><%= holding.name %></td>
+        <td><%= number_to_currency(holding.price) %></td>
+        <td><%= number_to_currency(holding.bid) %></td>
         <td><%= holding.qty %></td>
-        <td><%=l holding.created_at %></td>
+        <td><%= number_to_currency(holding.gain) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_holding_path(holding), :class => 'btn btn-mini' %>

@@ -9,18 +9,13 @@ class YahooFinanceTest < ActiveSupport::TestCase
   
 
   test "request single symbol" do
-    result = YahooFinance.market_details("GOOG").first
-    puts result
-    assert result.has_value?('GOOG')
-  end
-
-  test "request multiple symbols" do
-    assert_equal YahooFinance.market_details(['GOOG', 'AAPL']).length, 2
+    result = YahooFinance.market_details("GOOG")
+    assert result.has_value?('Google Inc.')
   end
 
   test "request invalid symbol" do
-    result = YahooFinance.market_details("ZZ123ZZZZ").first
-    assert !result[:valid]
+    result = YahooFinance.market_details("ZZ123ZZZZ")
+    assert !result[:is_valid]
   end
 
 end

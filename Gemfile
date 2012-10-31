@@ -20,6 +20,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
   gem 'mechanize', '>= 2.5.1'
+  gem 'client_side_validations'
+  gem 'simple_form', '2.0'
 end
 
 gem 'jquery-rails'
