@@ -1,27 +1,34 @@
-<h3>Holdings</h3>
-
-<table>
-  <tr>
-    <th>Symbol</th>
-    <th>Price</th>
-    <th>Qty</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @holdings.each do |holding| %>
-  <tr>
-    <td><%= holding.symbol %></td>
-    <td><%= holding.price %></td>
-    <td><%= holding.qty %></td>
-    <td><%= link_to 'Show', holding %></td>
-    <td><%= link_to 'Edit', edit_holding_path(holding) %></td>
-    <td><%= link_to 'Destroy', holding, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = Holding -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+</div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:symbol) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:qty) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @holdings.each do |holding| %>
+      <tr>
+        <td><b><%= link_to holding.symbol, holding_path(holding) %></b></td>
+        <td><%= holding.price %></td>
+        <td><%= holding.qty %></td>
+        <td><%=l holding.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_holding_path(holding), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      holding_path(holding),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Holding', new_holding_path %>

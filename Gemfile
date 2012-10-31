@@ -18,6 +18,8 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
+  gem 'mechanize', '>= 2.5.1'
 end
 
 gem 'jquery-rails'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030182433) do
+ActiveRecord::Schema.define(:version => 20121031115442) do
 
   create_table "holdings", :force => true do |t|
     t.string   "symbol"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20121030182433) do
     t.integer  "qty"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.decimal  "daily_low"
+    t.decimal  "daily_high"
+    t.string   "notes"
+    t.boolean  "is_valid"
   end
 
 end
