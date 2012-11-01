@@ -2,7 +2,7 @@ class HoldingsController < ApplicationController
   
   #As the spec states this is single user only just going to do some 
   #simple authentication.  I could move the user name and password to a 
-  #config file but this show the concept
+  #config file but this shows the concept
   http_basic_authenticate_with :name => "name", :password => "password"  
   before_filter :get_market_values, :only => [:create, :update]
 

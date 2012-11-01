@@ -1,6 +1,6 @@
 <%- model_class = Holding -%>
 <div class="page-header">
-  <h3><%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+<h3><%=t '.title', :default => model_class.model_name.human.pluralize %>: <%= number_to_currency(sum_portfolio) %></h3>
 </div>
 <table class="table table-striped table-bordered">
   <thead>
