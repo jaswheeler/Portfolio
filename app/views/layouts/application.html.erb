@@ -24,7 +24,7 @@
       </a>
  
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="#">Portfolio Manager</a>
+      <%= link_to 'Portolio Manager', holdings_path, html_options = {'class' => 'brand'} %>
       <div class="nav-collapse"> 
         <ul class="nav">
           <li><%= link_to 'Add Holding', new_holding_path %></li>
