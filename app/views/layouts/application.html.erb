@@ -15,6 +15,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
     <div class="container">
+      
  
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -24,11 +25,11 @@
       </a>
  
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <%= link_to 'Portolio Manager', holdings_path, html_options = {'class' => 'brand'} %>
+      <%= link_to 'Portolio Manager', holdings_path, :class => 'brand' %>
       <div class="nav-collapse"> 
-        <ul class="nav">
-          <li><%= link_to 'Add Holding', new_holding_path %></li>
-        </ul>
+        <div class="pull-right">
+          <%= link_to 'New Holding', new_holding_path(@holding), :class => 'btn btn-mini' %>
+        </div>
       </div>
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse">
