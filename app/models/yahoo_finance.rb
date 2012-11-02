@@ -17,10 +17,8 @@ class YahooFinance
   private
 
   def parse_collection(results)
-    #records = []
     CSV.parse(results, :headers => false) do |row| 
       valid = row[7].eql?('invalid') ? false : true
-      #records << { name: row[1], 
       return { name: row[1], 
                ask: row[2].to_f, 
                bid: row[3].to_f, 
@@ -29,11 +27,6 @@ class YahooFinance
                notes: row[6],
                is_valid: valid}
     end
-    #records.first
-  end
-
-  def symbol_string(symbols)
-    symbols.class.eql?(Array) ? symbols.join('+') : symbols
   end
 
   def remove_malformed_csv(result)
