@@ -5,9 +5,7 @@ gem 'rails', '3.2.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# uncomment out for sqlite,  using pg for heroku
-# gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
 
 
 # Gems used only for assets and not required
